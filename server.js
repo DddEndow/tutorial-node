@@ -1,4 +1,5 @@
 const http = require('http');
+const url = require('url');
 
 // const hostname = '127.0.0.1';
 // const port = 3000;
@@ -15,7 +16,8 @@ const http = require('http');
 
 function start() {
     function onRequest(request, response) {
-        console.log("Request received.");
+        var pathname = url.parse(request.url).pathname;
+        console.log("Request for " + pathname + " received.");
         response.writeHead(200, {"Content-Type": "text/plain"});
         response.write("Hello World");
         response.end();
